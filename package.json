@@ -29,7 +29,7 @@
     "node": ">= 18"
   },
   "dependencies": {
-    "@2colors/esphome-native-api": "^1.3.2",
+    "@2colors/esphome-native-api": "github:SimonFischer04/esphome-native-api#fix/36",
     "@iobroker/adapter-core": "^3.0.4",
     "@sentry/node": "^7.70.0",
     "autopy": "^1.1.1",
