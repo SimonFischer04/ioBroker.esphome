@@ -8,7 +8,7 @@
 // you need to create an adapter
 const utils = require('@iobroker/adapter-core');
 const clientDevice = require('./lib/helpers.js');
-// @ts-expect-error Client is just missing in index.d.ts file
+// @ts-expect-error Client and Discovery types are missing in @2colors/esphome-native-api index.d.ts
 const { Client, Discovery } = require('@2colors/esphome-native-api');
 const stateAttr = require(`${__dirname}/lib/stateAttr.js`); // Load attribute library
 const disableSentry = false; // Ensure to set to true during development!
