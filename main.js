@@ -202,7 +202,7 @@ class Esphome extends utils.Adapter {
 						this.log.warn(`ESPHome DDashboard is unable to access directory to store YAML configuration data, please run ioBroker fix`);
 					}
 
-					this.log.info(`Starting ESPHome Dashboard`);
+					this.log.info(`Starting ESPHome Dashboard on port ${this.config.ESPHomeDashboardPort} with version ${useDashBoardVersion}`);
 					const dashboardProcess = python('esphome', ['dashboard', '--port', this.config.ESPHomeDashboardPort, `${dataDir}esphome.${this.instance}`]);
 
 					this.log.debug(`espHomeDashboard_Process ${JSON.stringify(dashboardProcess)}`);
