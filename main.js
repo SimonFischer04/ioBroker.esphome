@@ -8,7 +8,7 @@
 // you need to create an adapter
 const utils = require('@iobroker/adapter-core');
 const clientDevice = require('./lib/helpers.js');
-// @ts-ignore Client is just missing in index.d.ts file
+// @ts-expect-error Client is just missing in index.d.ts file
 const {Client, Discovery} = require('@2colors/esphome-native-api');
 const stateAttr = require(__dirname + '/lib/stateAttr.js'); // Load attribute library
 const disableSentry = false; // Ensure to set to true during development!
@@ -119,7 +119,7 @@ class Esphome extends utils.Adapter {
 				if (lastUsed && lastUsed.val) {
 					lastUsed = lastUsed.val;
 				}
-			} catch (e) {
+			} catch {
 				// State does nto exist
 			}
 
@@ -162,7 +162,7 @@ class Esphome extends utils.Adapter {
 			if (useDashBoardVersion !== '') {
 				await this.stateSetCreate(`_ESPHomeDashboard.selectedVersion`, 'selectedVersion', useDashBoardVersion);
 			} else if (lastUsed != null) {
-				// @ts-ignore
+				// @ts-expect-error - lastUsed can be a string from state value
 				useDashBoardVersion = lastUsed;
 			}
 
@@ -171,7 +171,7 @@ class Esphome extends utils.Adapter {
 				this.log.info(`Native Integration of ESPHome Dashboard enabled, making environment ready`);
 				try {
 
-					// @ts-ignore
+					// @ts-expect-error - autopy module has no type definitions
 					const {getVenv} = await import('autopy');
 					let python;
 					try {
@@ -197,7 +197,7 @@ class Esphome extends utils.Adapter {
 							console.log(`ESPHome directory created`);
 						});
 					// );
-					} catch (e) {
+					} catch {
 					// Directory has issues reading/writing data, iob fix should be executed
 						this.log.warn(`ESPHome DDashboard is unable to access directory to store YAML configuration data, please run ioBroker fix`);
 					}
@@ -229,7 +229,7 @@ class Esphome extends utils.Adapter {
 					});
 
 					// eslint-disable-next-line no-unused-vars
-					dashboardProcess.on('exit', (code, signal) => {
+					dashboardProcess.on('exit', (_code, _signal) => {
 						this.log.warn(`ESPHome Dashboard stopped`);
 					});
 
@@ -471,7 +471,7 @@ class Esphome extends utils.Adapter {
 							statusStates: {
 								onlineId: `${this.namespace}.${deviceName}.info._online`
 							},
-							//@ts-ignore js-controller issue erstellt
+							//@ts-expect-error js-controller issue erstellt
 							desc: deviceInfo.friendlyName,
 						},
 						native: {
@@ -496,7 +496,7 @@ class Esphome extends utils.Adapter {
 							'type': 'info',
 							'message': 'success'
 						};
-						// @ts-ignore
+						// @ts-expect-error - respond method exists on adapter instance
 						this.respond(massageObj, this.messageResponse[host]);
 						this.messageResponse[host] = null;
 					}
@@ -561,7 +561,7 @@ class Esphome extends utils.Adapter {
 							if (obj) {
 								await this.delObjectAsync(`${clientDetails[host].deviceName}.${entity.type}.${entity.id}.config`, {recursive: true});
 							}
-						} catch (error) {
+						} catch {
 							// do nothing
 						}
 					} else {
@@ -875,7 +875,7 @@ class Esphome extends utils.Adapter {
 								clientDetails[host][entity.id].states.transitionLength = 0;
 							}
 
-						} catch (e) { // Else create it
+						} catch { // Else create it
 							await this.stateSetCreate(`${clientDetails[host].deviceName}.${entity.type}.${entity.id}.transitionLength`, `${stateName} of ${entity.config.name}`, 0, `ms`, writable);
 							clientDetails[host][entity.id].states.transitionLength = 0;
 						}
@@ -1024,7 +1024,7 @@ class Esphome extends utils.Adapter {
 				)) {
 
 				// console.log(`An attribute has changed : ${state}`);
-				// @ts-ignore values are correctly provided by state Attribute definitions, error can be ignored
+				// @ts-expect-error values are correctly provided by state Attribute definitions, error can be ignored
 				await this.extendObjectAsync(objName, {
 					type: 'state',
 					common,
@@ -1230,7 +1230,7 @@ class Esphome extends utils.Adapter {
 							'type': 'error',
 							'message': 'connection failed'
 						};
-						// @ts-ignore
+						// @ts-expect-error - respond method exists on adapter instance
 						this.respond(massageObj, obj);
 
 					} else {
@@ -1363,7 +1363,7 @@ class Esphome extends utils.Adapter {
 						try {
 							// if (clientDetails[obj.message.ip].connected) clientDetails[obj.message.ip].client.disconnect();
 							clientDetails[obj.message.ip].client.disconnect();
-						} catch (e) {
+						} catch {
 							// There was no connection in memory
 						}
 						// Clean memory data and init device again with a little delay
@@ -1385,7 +1385,7 @@ class Esphome extends utils.Adapter {
 						// Try to delete Device Object including all underlying states
 						try {
 							await this.delObjectAsync(clientDetails[obj.message.ip].deviceName, {recursive: true});
-						} catch (e) {
+						} catch {
 							// Deleting device channel failed
 						}
 
@@ -1460,7 +1460,7 @@ class Esphome extends utils.Adapter {
 						await this.offlineDeviceCleanup();
 						return;
 					}
-				} catch (e) {
+				} catch {
 					// Skip action
 				}
 
@@ -1639,7 +1639,7 @@ class Esphome extends utils.Adapter {
 			const _channels = await this.getObjectViewAsync('system', 'channel', params);
 			// List all found channels & compare with memory, delete unneeded channels
 			for (const currDevice in _channels.rows) {
-				// @ts-ignore
+				// @ts-expect-error - rows is a valid property of the result
 				if (!clientDetails[ip].adapterObjects.channels.includes(_channels.rows[currDevice].id)
 					&& _channels.rows[currDevice].id.split('.')[2] === clientDetails[ip].deviceName){
 					this.log.debug(`[objectCleanup] Unknown Channel found, delete ${_channels.rows[currDevice].id}`);
