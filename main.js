@@ -14,6 +14,8 @@ const stateAttr = require(__dirname + '/lib/stateAttr.js'); // Load attribute li
 const disableSentry = false; // Ensure to set to true during development!
 const warnMessages = {}; // Store warn messages to avoid multiple sending to sentry
 const fs = require('fs');
+const os = require('os');
+const path = require('path');
 const {clearTimeout} = require('timers');
 const resetTimers = {}; // Memory allocation for all running timers
 let autodiscovery, dashboardProcess, createConfigStates, discovery;
@@ -1410,8 +1412,6 @@ class Esphome extends utils.Adapter {
 				// Handle front-end message to clear autopy cache
 				case 'clearAutopyCache':
 					try {
-						const os = require('os');
-						const path = require('path');
 						const homeDir = os.homedir();
 						const cachePath = path.join(homeDir, '.cache', 'autopy');
 

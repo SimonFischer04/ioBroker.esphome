@@ -40,5 +40,5 @@
   "newDevicesHeader": "Appareils récemment découverts, veuillez fournir vos informations d'identification !",
   "reConInterval": "Paramètres entre ioBroker essayant de reconnecter cet appareil",
   "lblClearAutopyCache": "Effacer le cache autopy",
-  "hlpClearAutopyCache": "Efface le cache Python autopy. Cela peut aider à résoudre les problèmes de tableau de bord. Le cache sera recréé au prochain redémarrage de l adaptateur si ESPHome Dashboard est activé."
+  "hlpClearAutopyCache": "Efface le cache Python autopy. Cela peut aider à résoudre les problèmes de tableau de bord. Le cache sera recréé au prochain redémarrage de l'adaptateur si ESPHome Dashboard est activé."
 }
