@@ -38,5 +38,7 @@
     "lbl_addUpdateDevice": "添加/修改设备",
     "maxRetry": "将设备视为离线之前的最大连接重试次数",
     "newDevicesHeader": "新发现的设备，请提供凭据！",
-    "reConInterval": "ioBroker 尝试重新连接此设备之间的设置"
+    "reConInterval": "ioBroker 尝试重新连接此设备之间的设置",
+    "lblClearAutopyCache": "清除 autopy 缓存",
+    "hlpClearAutopyCache": "清除 autopy Python 缓存。这可以帮助解决仪表板问题。如果启用了 ESPHome Dashboard，缓存将在下次适配器重启时重新创建。"
 }

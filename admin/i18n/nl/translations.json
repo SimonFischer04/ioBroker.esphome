@@ -38,5 +38,7 @@
     "lbl_addUpdateDevice": "Apparaten toevoegen/wijzigen",
     "maxRetry": "Maximale verbindingspoging voordat het apparaat als offline wordt beschouwd",
     "newDevicesHeader": "Nieuw ontdekte apparaten, geef uw inloggegevens op!",
-    "reConInterval": "Instelling tussen ioBroker-pogingen om dit apparaat opnieuw te verbinden"
+    "reConInterval": "Instelling tussen ioBroker-pogingen om dit apparaat opnieuw te verbinden",
+    "lblClearAutopyCache": "Wis autopy-cache",
+    "hlpClearAutopyCache": "Wist de autopy Python-cache. Dit kan helpen bij het oplossen van dashboardproblemen. De cache wordt opnieuw aangemaakt bij de volgende herstart van de adapter als ESPHome Dashboard is ingeschakeld."
 }

@@ -1406,6 +1406,38 @@ class Esphome extends utils.Adapter {
 
 					// this.sendTo(obj.from, obj.command, 1, obj.callback);
 					break;
+
+				// Handle front-end message to clear autopy cache
+				case 'clearAutopyCache':
+					try {
+						const os = require('os');
+						const path = require('path');
+						const homeDir = os.homedir();
+						const cachePath = path.join(homeDir, '.cache', 'autopy');
+
+						this.log.info(`Attempting to clear autopy cache at: ${cachePath}`);
+
+						// Check if cache directory exists
+						if (fs.existsSync(cachePath)) {
+							// Remove the cache directory recursively
+							fs.rmSync(cachePath, { recursive: true, force: true });
+							this.log.info('Autopy cache cleared successfully');
+							this.sendTo(obj.from, obj.command,
+								{result: 'OK - Autopy cache cleared successfully. Please restart the adapter if ESPHome Dashboard is enabled.'},
+								obj.callback);
+						} else {
+							this.log.info('Autopy cache directory does not exist, nothing to clear');
+							this.sendTo(obj.from, obj.command,
+								{result: 'OK - Autopy cache directory does not exist (already cleared or never created)'},
+								obj.callback);
+						}
+					} catch (error) {
+						this.log.error(`Error clearing autopy cache: ${error}`);
+						this.sendTo(obj.from, obj.command,
+							{error: `Failed to clear autopy cache: ${error.message}`},
+							obj.callback);
+					}
+					break;
 			}
 		} catch (error) {
 			this.errorHandler(`[onMessage]`, error);

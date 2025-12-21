@@ -587,6 +587,21 @@
 								"calculateFunc": "`http://${data.ESPHomeDashboardIP}:${data.ESPHomeDashboardPort}`",
 								"ignoreOwnChanges": true
 							}
+						},
+						"clearAutopyCache": {
+							"newLine": true,
+							"type": "sendTo",
+							"label": "lblClearAutopyCache",
+							"variant": "outlined",
+							"showProcess": true,
+							"command": "clearAutopyCache",
+							"jsonData": "{}",
+							"help": "hlpClearAutopyCache",
+							"xs": 12,
+							"sm": 12,
+							"md": 12,
+							"lg": 12,
+							"xl": 12
 						}
 					}
 				},
