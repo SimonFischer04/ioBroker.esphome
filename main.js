@@ -1872,7 +1872,6 @@ class Esphome extends utils.Adapter {
             const _channels = await this.getObjectViewAsync('system', 'channel', params);
             // List all found channels & compare with memory, delete unneeded channels
             for (const currDevice in _channels.rows) {
-                // @ts-expect-error - rows is a valid property of the result
                 if (
                     !clientDetails[ip].adapterObjects.channels.includes(_channels.rows[currDevice].id) &&
                     _channels.rows[currDevice].id.split('.')[2] === clientDetails[ip].deviceName
