@@ -41,11 +41,11 @@
     "@alcalzone/release-script-plugin-manual-review": "^4.0.0",
     "@iobroker/adapter-dev": "^1.5.0",
     "@iobroker/dev-server": "^0.8.0",
+    "@iobroker/eslint-config": "^2.2.0",
     "@iobroker/testing": "^5.2.2",
     "@types/gulp": "^4.0.18",
     "@types/node": "^24.10.1",
     "axios": "^1.13.2",
-    "eslint": "^8.57.1",
     "gulp": "^4.0.2",
     "promisify": "~0.0.3",
     "typescript": "~5.9.3"
@@ -68,7 +68,7 @@
     "test:integration": "mocha test/integration --exit",
     "test": "npm run test:js && npm run test:package && npm run test:integration",
     "check": "tsc --noEmit -p tsconfig.check.json",
-    "lint": "eslint .",
+    "lint": "eslint -c eslint.config.mjs .",
     "release": "release-script --all",
     "release-dry": "release-script --all --dry"
   },
