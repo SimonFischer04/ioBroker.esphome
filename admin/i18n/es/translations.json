@@ -38,5 +38,7 @@
     "lbl_addUpdateDevice": "AGREGAR / Modificar dispositivos",
     "maxRetry": "Reintento máximo de conexión antes de considerar el dispositivo como fuera de línea",
     "newDevicesHeader": "Dispositivos recién descubiertos, proporcione credenciales.",
-    "reConInterval": "Configuración entre intentos de ioBroker para volver a conectar este dispositivo"
+    "reConInterval": "Configuración entre intentos de ioBroker para volver a conectar este dispositivo",
+    "lblClearAutopyCache": "Borrar caché de autopy",
+    "hlpClearAutopyCache": "Borra la caché de Python de autopy. Esto puede ayudar a resolver problemas del panel. La caché se recreará en el próximo reinicio del adaptador si ESPHome Dashboard está habilitado."
 }

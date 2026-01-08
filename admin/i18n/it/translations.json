@@ -38,5 +38,7 @@
     "lbl_addUpdateDevice": "AGGIUNGI/MODIFICA DISPOSITIVI",
     "maxRetry": "Numero massimo di tentativi di connessione prima di considerare il dispositivo offline",
     "newDevicesHeader": "Dispositivi appena scoperti, fornisci le credenziali!",
-    "reConInterval": "Impostazione tra i tentativi di ioBroker di riconnettere questo dispositivo"
+    "reConInterval": "Impostazione tra i tentativi di ioBroker di riconnettere questo dispositivo",
+    "lblClearAutopyCache": "Cancella cache autopy",
+    "hlpClearAutopyCache": "Cancella la cache Python di autopy. Questo può aiutare a risolvere i problemi della dashboard. La cache verrà ricreata al successivo riavvio dell'adattatore se ESPHome Dashboard è abilitato."
 }
